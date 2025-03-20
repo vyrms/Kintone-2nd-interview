@@ -7,7 +7,8 @@
       const status_action = eventobject.action.value;
       console.log('Status action is', status_action);
       // if action is to complete the order, update the item app data
-      if (status_action == 'Complete order') {
+      const action_complete = ['Complete order', '納品完了'];
+      if (status_action in action_complete) {
         const item_app_id = 7;
         const item_record_id = eventobject.record.item_rn.value;
         const order_type = eventobject.record.order_type.value;

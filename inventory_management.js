@@ -6,9 +6,10 @@
       console.log(eventobject);
       const status_action = eventobject.action.value;
       console.log('Status action is', status_action);
-      // if action is to complete the order, update the item app data
       const action_complete = ['Complete order', '納品完了'];
-      if (status_action in action_complete) {
+      const order_purchase = ['Purchase', '購入'];
+      // if action is to complete the order, update the item app data
+      if (action_complete.includes(status_action)) {
         const item_app_id = 7;
         const item_record_id = eventobject.record.item_rn.value;
         const order_type = eventobject.record.order_type.value;
@@ -28,7 +29,7 @@
         // if order type is purchase, subtract from stock
         // if not, then order type is assumed to be Sale, and adds to stock
         var new_stock;
-        if (order_type == 'Purchase') {
+        if (order_purchase.includes(order_type)) {
           new_stock = item_stock - order_quantity;
         } else {
           new_stock = item_stock + order_quantity;

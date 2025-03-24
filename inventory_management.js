@@ -37,17 +37,15 @@
         // if the new stock is minus, raise error and cancel order completion
         if (new_stock < 0) {
           const err_message = 'Order number of '+order_quantity+' is too large for stock: '+item_stock;
-          alert(err_message);
           console.error(err_message);
-          return false;
-          // return swal({
-          //   title: 'The order is too big!',
-          //   text: 'The purchase exceeds the number of items stock: ',
-          //   icon: 'error',
-          // }).then(function() {
-          //   console.log(result);
-          //   throw 'Order too large';
-          // });
+          return swal({
+            title: 'The order is too big!',
+            text: err_message,
+            type: 'error',
+          }).then(function() {
+            console.log(result);
+            return false;
+          });
         }
         // make API request to upate the item data
         api_request_body = {
